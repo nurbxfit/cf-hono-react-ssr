@@ -6,14 +6,17 @@ import { Button } from "./ui/button";
 export const Counter = () => {
     const [count, setCount] = useState(0);
     return (
-        <>
-            <Button
-                className="px-4 py-2 bg-blue-600 text-white rounded"
-                onClick={() => setCount((c) => c + 1)}
-            >
-                Count: {count}
-            </Button>
-
-        </>
+        <div className="flex flex-col items-center gap-4">
+            <p className="text-2xl font-medium">Count: {count}</p>
+            <div className="flex gap-4">
+                <Button onClick={() => setCount((c) => c + 1)}>Increment</Button>
+                <Button
+                    variant="outline"
+                    onClick={() => setCount(0)}
+                >
+                    Reset
+                </Button>
+            </div>
+        </div>
     )
 }
