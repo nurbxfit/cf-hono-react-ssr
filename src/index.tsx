@@ -1,12 +1,14 @@
-import { Hono } from 'hono'
-import { renderer } from './renderer'
+import { Hono } from "hono"
+import { renderToString } from "react-dom/server"
+import App from "./App"
+import { Document } from "./Document"
 
 const app = new Hono()
 
-app.use(renderer)
-
-app.get('/', (c) => {
-  return c.render(<h1>Hello!</h1>)
+app.get("*", (c) => {
+  const body = renderToString(<App />)
+  const html = renderToString(<Document>{body}</Document>)
+  return c.html("<!DOCTYPE html>" + html)
 })
 
 export default app
