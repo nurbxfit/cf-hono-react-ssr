@@ -1,5 +1,5 @@
-import { Counter } from "./components/Counter";
-import { DialogDemo } from "./components/TestDialog";
+import { Counter } from "../components/Counter";
+import { DialogDemo } from "../components/TestDialog";
 
 export default function App() {
     return (

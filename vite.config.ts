@@ -9,8 +9,10 @@ export default defineConfig({
   plugins: [react(), cloudflare(), ssrPlugin(), tailwindcss(),],
   build: {
     rollupOptions: {
-      input: "./src/index.tsx", // point to your Hono SSR entry,
+      input: "./src/workers/index.tsx", // point to your Hono SSR entry,
     },
+    outDir: "dist",
+    manifest: true,
   },
   resolve: {
     alias: {
