@@ -14,7 +14,7 @@ export function reactSSR(defaultOptions: RenderOptions = {}) {
             const { layout, title } = { ...defaultOptions, ...options }
             const content = layout ? layout(component) : component
             const body = renderToString(content)
-            const html = renderToString(<Document title={title} > {body} </Document>)
+            const html = renderToString(<Document title={title}>{body}</Document>)
             return c.html("<!DOCTYPE html>" + html)
         }
         return next()

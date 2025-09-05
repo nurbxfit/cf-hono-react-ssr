@@ -6,7 +6,7 @@ export function Document({
     children,
     title = "Hono + React SSR",
 }: {
-    children: string[]
+    children: string
     title?: string
 }) {
     return (
