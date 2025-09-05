@@ -112,3 +112,9 @@ export default function App() {
 
 ---
 
+## ⚠️ Disclaimer  
+This is just me experimenting with **Hono + React SSR** on Cloudflare Workers.  
+It’s not a production-ready framework — just a lightweight starter for simple  
+landing pages or portfolio sites where you want **SEO-friendly SSR** without the  
+complexity of Next.js. For larger apps with data fetching, authentication, or  
+nested layouts, you’re probably better off using Next.js, Remix, or Inertia.js.  
