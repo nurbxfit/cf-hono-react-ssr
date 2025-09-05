@@ -1,24 +1,34 @@
 import { renderToString } from "react-dom/server"
 import { Document } from "../client/Document"
 import type { Context } from "hono"
-import { JSX } from "react"
+import { RouteKey, routes } from "@/client/routes"
 
-type RenderOptions = {
-    layout?: (content: JSX.Element) => JSX.Element
+export type RenderOptions = {
     title?: string
+    page?: RouteKey
+    props?: Record<string, unknown>
 }
 
 export function reactSSR(defaultOptions: RenderOptions = {}) {
     return (c: Context, next: () => Promise<void>) => {
-        c.reactRender = (component: JSX.Element, options?: RenderOptions) => {
-            const { layout, title } = { ...defaultOptions, ...options }
-            const content = layout ? layout(component) : component
-            const body = renderToString(content)
-            const html = renderToString(<Document title={title}>{body}</Document>)
+        c.reactRender = (page: RouteKey, options?: RenderOptions) => {
+            const { title, props } = { ...defaultOptions, ...options }
+            const serializedProps = props && JSON.stringify(props).replace(/</g, "\\u003c")
+
+            const Component = routes[page]
+
+            const element = <Component {...props} />
+            const body = renderToString(element)
+
+            const html = renderToString(
+                <Document title={title} page={page} propsScript={serializedProps}>
+                    {body}
+                </Document>
+            )
+
             return c.html("<!DOCTYPE html>" + html)
         }
         return next()
     }
 }
-
 

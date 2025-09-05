@@ -1,22 +1,15 @@
 import { Hono } from "hono"
-import App from "../client/App"
 import { reactSSR } from "@/middlewares/reactSSR"
-// import { serveStatic } from "hono/cloudflare-workers"
 
 const app = new Hono()
-// serve vite build output
-// import manifest from "../../dist/client/.vite/manifest.json"
 
-// app.use("/assets/*", serveStatic({ root: "./dist", manifest }))
-// app.use("/manifest.json", serveStatic({ root: "./dist", manifest }))
 
-app.use(reactSSR());
+app.use(reactSSR())
 
-app.get("*", (c) => {
-
-  return c.reactRender(
-    <App />, { title: 'Home' }
-  )
+app.get("/", (c) => c.reactRender("home", { title: "App Root" }))
+app.get("/about", (c) => c.reactRender("about", { title: "App Root" }))
+// 404 fallback — must be at the end
+app.notFound((c) => {
+  return c.reactRender("notFound", { title: "404 - Not Found" })
 })
-
 export default app
