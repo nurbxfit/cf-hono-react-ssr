@@ -8,7 +8,9 @@ A minimal, fast SSR starter template for building modern web apps with:
 - **TailwindCSS** – Utility-first styling
 - **Cloudflare Workers** – Edge deployment
 
-Enjoy true SSR (server-rendered HTML), seamless client hydration, and hot reload for rapid development.
+Enjoy SSR (server-rendered HTML), seamless client hydration, and hot reload for rapid development.
+
+Disclaimer: This is a simple starter for learning and experimentation, not a full-fledged framework meant for production.
 
 ---
 
@@ -22,18 +24,7 @@ Enjoy true SSR (server-rendered HTML), seamless client hydration, and hot reload
 
 ---
 
-## 📂 Project Structure
 
-```
-src/
- ├── App.tsx          # React App (example counter)
- ├── Document.tsx     # HTML template wrapper
- ├── main.tsx         # Client-side hydration
- ├── index.tsx        # Hono server entry (SSR)
- └── style.css        # TailwindCSS styles
-vite.config.ts        # Vite configuration
-wrangler.toml         # Cloudflare Workers config
-```
 
 ---
 
