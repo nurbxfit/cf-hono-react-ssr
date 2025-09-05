@@ -1,6 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "cf-hono-ssr-react",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "compatibility_date": "2025-08-03",
-  "main": "./src/index.tsx"
+  "main": "./src/workers/index.tsx"
 }
