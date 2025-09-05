@@ -15,9 +15,12 @@ export function reactSSR(defaultOptions: RenderOptions = {}) {
             const { title, props } = { ...defaultOptions, ...options }
             const serializedProps = props && JSON.stringify(props).replace(/</g, "\\u003c")
 
-            const Component = routes[page]
+            const { Component, Layout } = routes[page]
+            const element = <Layout>
+                <Component {...props} />
+            </Layout>
 
-            const element = <Component {...props} />
+
             const body = renderToString(element)
 
             const html = renderToString(
