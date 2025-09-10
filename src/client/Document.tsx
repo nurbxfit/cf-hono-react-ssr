@@ -1,4 +1,4 @@
-import { ViteClient, Link, Script } from "vite-ssr-components/react"
+import { ViteClient, Link, Script, ReactRefresh } from "vite-ssr-components/react"
 
 const isDev = process.env.NODE_ENV !== "production"
 
@@ -19,19 +19,7 @@ export function Document({
             <head>
                 <meta charSet="UTF-8" />
                 <title>{title}</title>
-
-                {isDev && (
-                    <script type="module">
-                        {`
-              import RefreshRuntime from "/@react-refresh"
-              RefreshRuntime.injectIntoGlobalHook(window)
-              window.$RefreshReg$ = () => {}
-              window.$RefreshSig$ = () => (type) => type
-              window.__vite_plugin_react_preamble_installed__ = true
-            `}
-                    </script>
-                )}
-
+                <ReactRefresh />
                 <ViteClient />
                 <Link rel="stylesheet" href="/src/client/style.css" />
                 <Script src="/src/client/main.tsx" />
